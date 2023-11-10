@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MAXSMS Template Manager</title>
+    <!-- Add Bootstrap 5 CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* Custom styles for the Maxsip Docs app */
+        body {
+            font-size: 14px;
+            background-color: #f0f0f0; /* Light grey background color */
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        /* Style for the spreadsheet container */
+        .spreadsheet-container {
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+        }
+
+        /* Style for table and cells */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        /* Style for the Template List heading */
+        .template-list-heading {
+            text-align: left;
+            color: blue;
+            font-size: 18px;
+            margin-top: 10px; /* Add space between headings */
+        }
+
+        /* Style for the Edit button */
+        .edit-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+
+        /* Style for the Add New button */
+        .add-new-button {
+            background-color: #28a745; /* Green color */
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+
+        /* Style for row numbers */
+        .row-number {
+            font-weight: bold;
+        }
+
+        /* Style for dropdown */
+        .template-type-dropdown {
+            width: 100%;
+            padding: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MAXSMS Template Manager</h1>
+        <div class="row">
+            <div class="col-6">
+                <!-- Apply the "template-list-heading" class to style and left-align the heading -->
+                <h5 class="template-list-heading">Template List</h5>
+            </div>
+        </div>
+        <div class="spreadsheet-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Row</th>
+                        <th>Template Type</th>
+                        <th>Title</th>
+                        <th>Edit</th>
+                        <!-- Keep column A and remove columns B, C, D, and E -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="row-number">1</td>
+                        <td>
+                            <!-- Dropdown for Template Type -->
+                            <select class="template-type-dropdown">
+                                <option value="Promotions">Promotions</option>
+                                <option value="Support">Support</option>
+                            </select>
+                        </td>
+                        <td contenteditable="true"></td>
+                        <!-- Keep corresponding cell A and remove cells B, C, D, and E -->
+                        <td><button class="edit-button">Edit</button></td>
+                    </tr>
+                    <!-- Add more rows and cells as needed -->
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center mt-3">
+            <!-- Add New button that adds a new row to the table -->
+            <button class="add-new-button" onclick="addNewRow()">Add New</button>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap 5 JS and Popper.js if needed -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+    
+    <script>
+        var rowCount = 1; // Initialize row count
+        
+        // JavaScript function to add a new row to the table
+        function addNewRow() {
+            // Get the table body element
+            var tbody = document.querySelector("tbody");
+
+            // Create a new row
+            var newRow = document.createElement("tr");
+
+            // Create a cell for the row number
+            var rowNumberCell = document.createElement("td");
+            rowNumberCell.className = "row-number";
+            rowNumberCell.textContent = ++rowCount; // Increment row count and display
+            newRow.appendChild(rowNumberCell);
+
+            // Create a cell for Template Type with a dropdown
+            var templateTypeCell = document.createElement("td");
+            var templateTypeDropdown = document.createElement("select");
+            templateTypeDropdown.className = "template-type-dropdown";
+            
+            // Add options to the dropdown
+            var option1 = document.createElement("option");
+            option1.value = "Promotions";
+            option1.text = "Promotions";
+            var option2 = document.createElement("option");
+            option2.value = "Support";
+            option2.text = "Support";
+            
+            templateTypeDropdown.appendChild(option1);
+            templateTypeDropdown.appendChild(option2);
+            
+            templateTypeCell.appendChild(templateTypeDropdown);
+
+            // Create a cell for Title
+            var titleCell = document.createElement("td");
+            titleCell.contentEditable = true;
+
+            // Create an Edit button
+            var editButtonCell = document.createElement("td");
+            var editButton = document.createElement("button");
+            editButton.className = "edit-button";
+            editButton.textContent = "Edit";
+            editButtonCell.appendChild(editButton);
+
+            // Append cells to the new row
+            newRow.appendChild(templateTypeCell);
+            newRow.appendChild(titleCell);
+            newRow.appendChild(editButtonCell);
+
+            // Append the new row to the table
+            tbody.appendChild(newRow);
+        }
+    </script>
+</body>
+</html>
